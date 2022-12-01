@@ -1,6 +1,6 @@
 # Endpoints Wallet-Backend
 
-### Create a new customer
+### Create a new client
 
 ```http
 [POST] /api/v1/client
@@ -233,7 +233,7 @@ AccountService / updateBalance(idIncome: string, idOutcome: string, amount: numb
 ### Change App´s Theme Color
 
 ```http
-  [PUT] /api/v1/theme
+  [PUT] /api/v1/client/theme
 ```
 
 request [body]:
