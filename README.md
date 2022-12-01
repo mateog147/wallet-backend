@@ -140,9 +140,7 @@ request [body]:
 ```
 	{
 		"idIncome": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
-		"reason": "Loan",
-		"amount": 1
-		"fees": 60
+		"amount": 60
 	}
 ```
 
@@ -161,10 +159,10 @@ response [201] :
 	{
 		"id": "8fd1a8e3-5147-473f-840f-62981b808a0c",
 		"idIncome": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
-		"idOutcome": "f3689626-8b1d-439c-9696-5bcad7e5fe75",
+		"idOutcome": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
 		"reason": "Loan",
-		"amount": 1
-		"fees": 60
+		"amount": 1,
+		"fees": 60,
 		"dateTime": "22/10/2022 13:55"
 	}
 ```
@@ -189,11 +187,10 @@ request [body]:
 
 ```
 	{
-		"idIncome": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
+		"emailIncome": "income@mail.com",
 		"idOutcome": "f3689626-8b1d-439c-9696-5bcad7e5fe75",
 		"reason": "Payment",
-		"amount": 1
-		"fees": 1
+		"amount": 1,
 	}
 ```
 
@@ -214,8 +211,8 @@ response [201] :
 		"idIncome": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
 		"idOutcome": "f3689626-8b1d-439c-9696-5bcad7e5fe75",
 		"reason": "Loan",
-		"amount": 1
-		"fees": 60
+		"amount": 1,
+		"fees": 60,
 		"dateTime": "22/10/2022 13:55"
 	}
 ```
@@ -240,8 +237,8 @@ request [body]:
 
 ```
 	{
-		"cliId":
-		"color": "Updated Patch"
+		"cliId": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
+		"color": "#00000"
 	}
 ```
 
@@ -258,8 +255,8 @@ response [200] :
 
 ```
 	{
-		"cliId":
-		"color": "Updated Patch"
+		"cliId": "1ddc64c0-56c0-40e0-83ee-16da62a4042f",
+		"color": "#00000"
 	}
 ```
 
