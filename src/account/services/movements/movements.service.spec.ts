@@ -41,7 +41,7 @@ describe('MovementsService', () => {
     ];
 
     //Act
-    const result = await service.getMovmeents(accId);
+    const result = await service.getMovments(accId);
     //Assert
     expect(result).toEqual(expected);
   });
@@ -50,7 +50,6 @@ describe('MovementsService', () => {
     //Arrange
     const dto = {
       idIncome: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
-      reason: 'Loan',
       amount: 10,
     };
     const expected = {
@@ -72,7 +71,7 @@ describe('MovementsService', () => {
   it('should create a new movment corresponding to a Payment', async () => {
     //Arrange
     const dto = {
-      idIncome: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
+      emailIncome: 'income@mail.com',
       idOutcome: 'f3689626-8b1d-439c-9696-5bcad7e5fe75',
       reason: 'Payment',
       amount: 10,
@@ -88,7 +87,7 @@ describe('MovementsService', () => {
     };
 
     //Act
-    const result = await service.payment(dto);
+    const result = await service.addPayment(dto);
     //Assert
     expect(result).toEqual(expected);
   });
