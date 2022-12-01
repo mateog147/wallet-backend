@@ -541,8 +541,8 @@ request [body]:
 
 ```
 	{
-		"cliId":
-		"color": "Updated Patch"
+		"cliId":"8fd1a8e3-5147-473f-840f-62981b808a0c",
+		"color": "#ff0000" 
 	}
 ```
 
@@ -559,8 +559,8 @@ response [200] :
 
 ```
 	{
-		"cliId":
-		"color": "Updated Patch"
+		"cliId":"8fd1a8e3-5147-473f-840f-62981b808a0c",
+		"color": "#ff0000" 
 	}
 ```
 

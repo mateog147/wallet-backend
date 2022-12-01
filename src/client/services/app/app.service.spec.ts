@@ -15,4 +15,16 @@ describe('AppService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should update the color related toa client Id', () => {
+    //Arrange
+    const dto = {
+      cliId: '8fd1a8e3-5147-473f-840f-62981b808a0c',
+      color: '#ff0000',
+    };
+    //Act
+    const result = service.updateColor(dto);
+    //Assert
+    expect(result).resolves.toEqual(dto);
+  });
 });
