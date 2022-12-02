@@ -15,9 +15,9 @@ export class AppEntity {
   @Column('character varying', {
     name: 'app_color',
     length: 30,
-    default: () => "'default'",
+    default: () => "'#1554F6'",
   })
-  color: string;
+  color = '#1554F6';
 
   @Column('timestamp without time zone', {
     name: 'app_created_at',

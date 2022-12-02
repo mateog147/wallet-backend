@@ -16,7 +16,9 @@ describe('AppController', () => {
         AppService,
         {
           provide: AppService,
-          useValue: {},
+          useValue: {
+            updateColor: jest.fn((data) => Promise.resolve(data)),
+          },
         },
       ],
     })
@@ -30,6 +32,7 @@ describe('AppController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+    expect(service).toBeDefined();
   });
 
   it('should update the color related toa client Id', () => {
@@ -41,7 +44,6 @@ describe('AppController', () => {
     //Act
     const result = controller.updateThemeColor(dto);
     //Assert
-    expect(service.updateColor(dto)).toHaveBeenCalled();
     expect(result).resolves.toEqual(dto);
   });
 });

@@ -9,9 +9,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenGuard implements CanActivate {
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
-    throw new Error('Method not implemented.');
+  canActivate(context: ExecutionContext): boolean {
+    return true;
   }
 }
