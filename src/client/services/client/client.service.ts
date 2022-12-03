@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { AccountEntity } from '../../../common/storage/databases/postgres/entities/account.entity';
 import { AppEntity } from '../../../common/storage/databases/postgres/entities/app.entity';
 import { AppService } from '../app/app.service';
+import { ClientDto } from '../../dto/client.dto';
 
 @Injectable()
 export class ClientService {
@@ -14,12 +15,10 @@ export class ClientService {
     private readonly clientRepository: Repository<ClientEntity>,
     private readonly appService: AppService,
   ) {}
-  async findByEmail(email: string) {
-    console.log('email', email);
+  async findByEmail(email: string): Promise<ClientDto> {
     const client: ClientEntity = await this.clientRepository.findOne({
       where: { email: email },
     });
-    console.log('client', client);
     const color = await this.appService.getColor(client.id);
     return {
       id: client.id,
