@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   Post,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { CreateClientDto } from '../../dto/create-client.dto';
 import { ClientService } from '../../services/client/client.service';
 import { ClientEntity } from '../../../common/storage/databases/postgres/entities/client.entity';
 import { ClientDto } from '../../dto/client.dto';
+import { NotFoundErrorsInterceptor } from '../../../common/interceptors/not-found-errors.interceptor';
 
 @Controller('api/v1/client')
 @UsePipes(
@@ -20,6 +22,7 @@ import { ClientDto } from '../../dto/client.dto';
     forbidNonWhitelisted: true,
   }),
 )
+@UseInterceptors(NotFoundErrorsInterceptor)
 export class ClientController {
   constructor(private readonly service: ClientService) {}
   @Post()

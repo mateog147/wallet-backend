@@ -7,24 +7,28 @@ import { AccountEntity } from './common/storage/databases/postgres/entities/acco
 import { AppEntity } from './common/storage/databases/postgres/entities/app.entity';
 import { ClientEntity } from './common/storage/databases/postgres/entities/client.entity';
 import { MovementEntity } from './common/storage/databases/postgres/entities/movement.entity';
-
+import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
   imports: [
-    ClientModule,
-    AccountModule,
-    CommonModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({
-      useFactory: async () => ({
+      useFactory: async (config: ConfigService) => ({
         type: 'postgres',
-        host: '127.0.0.1',
-        port: 5432,
-        username: 'admin',
-        password: 'admin',
+        host: config.get<string>('DATABASE_HOST'),
+        port: config.get<number>('DATABASE_PORT'),
+        username: config.get<string>('DATABASE_USER'),
+        password: config.get<string>('DATABASE_PASSWORD'),
         database: 'postgres',
         entities: [ClientEntity, AppEntity, AccountEntity, MovementEntity],
         synchronize: false,
       }),
+      inject: [ConfigService],
     }),
+    ClientModule,
+    AccountModule,
+    CommonModule,
   ],
 })
 export class MainModule {}

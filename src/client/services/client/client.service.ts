@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateClientDto } from '../../dto/create-client.dto';
 import { ClientEntity } from '../../../common/storage/databases/postgres/entities/client.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,18 +16,22 @@ export class ClientService {
     private readonly appService: AppService,
   ) {}
   async findByEmail(email: string): Promise<ClientDto> {
-    const client: ClientEntity = await this.clientRepository.findOne({
-      where: { email: email },
-    });
-    const color = await this.appService.getColor(client.id);
-    return {
-      id: client.id,
-      fullName: client.fullName,
-      email: client.email,
-      phone: client.phone,
-      photo: client.photo,
-      appColor: color,
-    };
+    try {
+      const client: ClientEntity = await this.clientRepository.findOneOrFail({
+        where: { email: email },
+      });
+      const color = await this.appService.getColor(client.id);
+      return {
+        id: client.id,
+        fullName: client.fullName,
+        email: client.email,
+        phone: client.phone,
+        photo: client.photo,
+        appColor: color,
+      };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+    }
   }
   create(dto: CreateClientDto): Promise<ClientEntity> {
     const client = new ClientEntity();

@@ -64,7 +64,7 @@ describe('ClientService', () => {
                 app: mockApp,
               });
             }),
-            findOne: jest.fn().mockResolvedValue(client1),
+            findOneOrFail: jest.fn().mockResolvedValue(client1),
           },
         },
       ],
