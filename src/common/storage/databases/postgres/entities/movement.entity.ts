@@ -22,7 +22,13 @@ export class MovementEntity {
   @Column('character varying', { name: 'mov_reason', length: 500 })
   reason: string;
 
-  @Column('bigint', { name: 'mov_amount' })
+  @Column('bigint', {
+    name: 'mov_amount',
+    transformer: {
+      to: (value) => value,
+      from: (value) => parseInt(value),
+    },
+  })
   amount: number;
 
   @Column('integer', { name: 'mov_fees', default: () => '1' })

@@ -1,5 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AccountDto } from '../../dto/account.to';
 import { Repository } from 'typeorm';
 import { AccountEntity } from '../../../common/storage/databases/postgres/entities/account.entity';
 import { LoanDto } from '../../dto/loan.dto';
@@ -13,14 +14,25 @@ export class AccountService {
     private readonly repository: Repository<AccountEntity>,
     private readonly movementsService: MovementsService,
   ) {}
-  getAccountInfo(id: string): Promise<AccountEntity> {
-    return this.repository.findOne({
+  async getAccountInfo(id: string): Promise<AccountDto> {
+    const accountDto = new AccountDto();
+    const account = await this.repository.findOneOrFail({
       where: { cliId: id },
       relations: {
         movements: true,
         movements2: true,
       },
     });
+    const movements = await this.movementsService.getMovments(account.id);
+    accountDto.id = account.id;
+    accountDto.cliId = account.cliId;
+    accountDto.balance = account.balance;
+    accountDto.credit = account.credit;
+    // accountDto.movements = [
+    //   ...new Set([...account.movements, ...account.movements2]),
+    // ];
+    accountDto.movements = movements;
+    return accountDto;
   }
   async newLoan(dto: LoanDto) {
     try {
@@ -39,7 +51,31 @@ export class AccountService {
       );
     }
   }
-  newPayment(dto: PaymentDto) {
-    throw new Error('Method not implemented.');
+  async newPayment(dto: PaymentDto) {
+    try {
+      const accountIncome: AccountEntity = await this.repository.findOneOrFail({
+        where: { id: dto.idIncome },
+      });
+      console.log('accountIncome :>> ', accountIncome);
+      const accountOutcome: AccountEntity = await this.repository.findOneOrFail(
+        {
+          where: { id: dto.idOutcome },
+        },
+      );
+      console.log('accountOutcome :>> ', accountOutcome);
+      if (accountOutcome.balance < dto.amount) {
+        throw new HttpException('Insuficent funds', HttpStatus.BAD_REQUEST);
+      }
+      const movement = await this.movementsService.addPayment(dto);
+      accountIncome.balance += dto.amount;
+      accountOutcome.balance -= dto.amount;
+      this.repository.save([accountIncome, accountOutcome]);
+      return movement;
+    } catch (error) {
+      throw new HttpException(
+        'we have troubles adding the payment',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

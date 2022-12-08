@@ -1,9 +1,14 @@
-import { IsNotEmpty, IsString, IsUUID, IsPositive } from 'class-validator';
-
-export class PaymentDto {
+import {
+  IsUUID,
+  IsString,
+  IsEmail,
+  IsNotEmpty,
+  IsPositive,
+} from 'class-validator';
+export class EmailPaymentDto {
+  @IsEmail()
   @IsNotEmpty()
-  @IsUUID()
-  idIncome: string;
+  emailIncome: string;
 
   @IsNotEmpty()
   @IsUUID()

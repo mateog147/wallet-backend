@@ -12,6 +12,7 @@ export class MovementsService {
     private readonly repository: Repository<MovementEntity>,
   ) {}
   addPayment(dto: PaymentDto) {
+    console.log('dto :>> ', dto);
     const movement = new MovementEntity();
     movement.accIdIncome = dto.idIncome;
     movement.accIdOutcome = dto.idOutcome;

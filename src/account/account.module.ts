@@ -7,10 +7,12 @@ import { AccountEntity } from '../common/storage/databases/postgres/entities/acc
 import { AppEntity } from '../common/storage/databases/postgres/entities/app.entity';
 import { ClientEntity } from '../common/storage/databases/postgres/entities/client.entity';
 import { MovementEntity } from '../common/storage/databases/postgres/entities/movement.entity';
+import { ClientService } from '../client/services/client/client.service';
+import { AppService } from '../client/services/app/app.service';
 
 @Module({
   controllers: [AccountController],
-  providers: [MovementsService, AccountService],
+  providers: [MovementsService, AccountService, ClientService, AppService],
   imports: [
     TypeOrmModule.forFeature([
       ClientEntity,
