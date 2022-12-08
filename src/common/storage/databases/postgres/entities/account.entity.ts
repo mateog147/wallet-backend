@@ -20,11 +20,25 @@ export class AccountEntity {
   @Column('uuid', { name: 'cli_id' })
   cliId: string;
 
-  @Column('bigint', { name: 'acc_balance', default: () => '0' })
-  balance: string;
+  @Column('bigint', {
+    name: 'acc_balance',
+    default: () => '0',
+    transformer: {
+      to: (value) => value,
+      from: (value) => parseInt(value),
+    },
+  })
+  balance: number;
 
-  @Column('bigint', { name: 'acc_credit', default: () => '50000000' })
-  credit: string;
+  @Column('bigint', {
+    name: 'acc_credit',
+    default: () => '50000000',
+    transformer: {
+      to: (value) => value,
+      from: (value) => parseInt(value),
+    },
+  })
+  credit: number;
 
   @Column('integer', { name: 'acc_state', default: () => '1' })
   state: number;

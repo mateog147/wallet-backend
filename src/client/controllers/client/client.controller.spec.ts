@@ -15,7 +15,23 @@ describe('ClientController', () => {
         ClientService,
         {
           provide: ClientService,
-          useValue: {},
+          useValue: {
+            create: jest.fn((data) => {
+              return Promise.resolve({
+                ...data,
+                id: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
+              });
+            }),
+            findByEmail: jest.fn().mockResolvedValue({
+              id: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
+              fullName: 'New Client',
+              email: 'client.new@mail.com',
+              phone: '3216549870',
+              photo:
+                'https://s.gravatar.com/avatar/875605e74d1bad33faa12f1e7ae1b155?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fnc.png',
+              appColor: '#1554F6',
+            }),
+          },
         },
       ],
     })
@@ -50,7 +66,6 @@ describe('ClientController', () => {
     const result = controller.newClient(dto);
 
     //Assert
-    expect(service.create(dto)).toBeCalled();
     expect(result).resolves.toEqual(expected);
   });
 
@@ -70,7 +85,6 @@ describe('ClientController', () => {
     const result = controller.getClientData(email);
 
     //Assert
-    expect(service.findByEmail()).toHaveBeenCalled();
     expect(result).resolves.toEqual(expected);
   });
 });

@@ -75,7 +75,7 @@ describe('AccountService', () => {
   it('should edit de balance of the account involved in a Payment', async () => {
     //Arrange
     const dto = {
-      emailIncome: 'income@mail.com',
+      idIncome: '1',
       idOutcome: 'f3689626-8b1d-439c-9696-5bcad7e5fe75',
       reason: 'Payment',
       amount: 10,

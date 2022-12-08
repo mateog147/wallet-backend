@@ -20,19 +20,25 @@ export class MovementEntity {
   accIdOutcome: string;
 
   @Column('character varying', { name: 'mov_reason', length: 500 })
-  movReason: string;
+  reason: string;
 
-  @Column('bigint', { name: 'mov_amount' })
-  movAmount: string;
+  @Column('bigint', {
+    name: 'mov_amount',
+    transformer: {
+      to: (value) => value,
+      from: (value) => parseInt(value),
+    },
+  })
+  amount: number;
 
   @Column('integer', { name: 'mov_fees', default: () => '1' })
-  movFees: number;
+  fees: number;
 
   @Column('timestamp without time zone', {
     name: 'mov_datetime',
     default: () => 'now()',
   })
-  movDatetime: Date;
+  dateTime: Date;
 
   @ManyToOne(() => AccountEntity, (account) => account.movements, {
     onDelete: 'RESTRICT',
