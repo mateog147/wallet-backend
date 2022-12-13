@@ -9,7 +9,6 @@ import {
   Post,
 } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common/pipes';
-import { AccountEntity } from '../../../common/storage/databases/postgres/entities/account.entity';
 import { LoanDto } from '../../dto/loan.dto';
 import { MovementEntity } from '../../../common/storage/databases/postgres/entities/movement.entity';
 import { PaymentDto } from '../../dto/paymnet.dto';
@@ -24,7 +23,7 @@ export class AccountController {
     private clientService: ClientService,
   ) {}
   @Get('/account/:id')
-  async getFactura(
+  async getAccount(
     @Param('id', ParseUUIDPipe) id: string,
   ): Promise<AccountDto> {
     try {

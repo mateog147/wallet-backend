@@ -25,7 +25,7 @@ export class MovementsService {
     const movement = new MovementEntity();
     movement.accIdIncome = dto.idIncome;
     movement.accIdOutcome = dto.idIncome;
-    movement.reason = 'Loan';
+    movement.reason = dto.reason;
     movement.amount = dto.amount;
     movement.fees = 60;
     return this.repository.save(movement);

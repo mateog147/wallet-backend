@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsPositive, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsPositive, IsString, IsUUID } from 'class-validator';
 
 export class LoanDto {
   @IsNotEmpty()
@@ -8,4 +8,8 @@ export class LoanDto {
   @IsNotEmpty()
   @IsPositive()
   amount: number;
+
+  @IsNotEmpty()
+  @IsString()
+  reason: string;
 }
