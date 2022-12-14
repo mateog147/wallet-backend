@@ -220,6 +220,7 @@ response [201] :
 		"dateTime": "22/10/2022 13:55"
 	}
 ```
+
 #### [guard]
 
 ClientTokenGuard / email [ClientDTO] token [bearrer token]
@@ -306,4 +307,3 @@ $ npm run test:cov
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
