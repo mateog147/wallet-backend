@@ -23,8 +23,6 @@ export class ClientTokenGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const token = request.headers.authorization.split(' ')[1];
       const flag = await this.getData(token);
-      // console.log('token :>>', token);
-      // console.log('flag >>', flag);
       return flag;
     } catch (error) {
       console.log('error:', error.message);
@@ -47,8 +45,6 @@ export class ClientTokenGuard implements CanActivate {
 
     return new Promise((resolve) => {
       verify(token, getKey, options, (err: VerifyErrors, decoded: any) => {
-        //console.log('decoded', decoded);
-        //console.log('err', err);
         if (err) resolve(false);
         resolve(true);
       });

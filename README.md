@@ -167,6 +167,10 @@ response [201] :
 	}
 ```
 
+#### [guard]
+
+ClientTokenGuard / email [ClientDTO] token [bearrer token]
+
 #### [pipe]
 
 ValidationPipe / class-validator [CreateMovementDTO]
@@ -216,6 +220,9 @@ response [201] :
 		"dateTime": "22/10/2022 13:55"
 	}
 ```
+#### [guard]
+
+ClientTokenGuard / email [ClientDTO] token [bearrer token]
 
 #### [pipe]
 
@@ -259,6 +266,10 @@ response [200] :
 		"color": "#00000"
 	}
 ```
+
+#### [guard]
+
+ClientTokenGuard / email [ClientDTO] token [bearrer token]
 
 ## Installation
 

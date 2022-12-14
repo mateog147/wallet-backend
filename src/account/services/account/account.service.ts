@@ -18,10 +18,10 @@ export class AccountService {
     const accountDto = new AccountDto();
     const account = await this.repository.findOneOrFail({
       where: { cliId: id },
-      relations: {
-        movements: true,
-        movements2: true,
-      },
+      // relations: {
+      //   movements: true,
+      //   movements2: true,
+      // },
     });
     const movements = await this.movementsService.getMovments(account.id);
     accountDto.id = account.id;
