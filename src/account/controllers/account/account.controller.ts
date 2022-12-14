@@ -1,3 +1,4 @@
+import { ClientTokenGuard } from './../../../common/guards/client-token.guard';
 import { AccountService } from './../../services/account/account.service';
 import {
   Body,
@@ -7,6 +8,7 @@ import {
   HttpStatus,
   Param,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common/pipes';
 import { LoanDto } from '../../dto/loan.dto';
@@ -17,6 +19,7 @@ import { ClientService } from '../../../client/services/client/client.service';
 import { AccountDto } from '../../dto/account.to';
 
 @Controller('api/v1')
+@UseGuards(ClientTokenGuard)
 export class AccountController {
   constructor(
     private service: AccountService,

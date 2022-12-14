@@ -82,6 +82,7 @@ describe('MovementsService', () => {
     const dto: LoanDto = {
       idIncome: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
       amount: 10,
+      reason: '',
     };
 
     //Act

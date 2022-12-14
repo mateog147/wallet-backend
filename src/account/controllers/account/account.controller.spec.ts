@@ -2,13 +2,14 @@ import { MovementEntity } from './../../../common/storage/databases/postgres/ent
 import { AccountDto } from './../../dto/account.to';
 import { AccountEntity } from './../../../common/storage/databases/postgres/entities/account.entity';
 import { ClientService } from './../../../client/services/client/client.service';
-import { TokenGuard } from './../../../common/guards/token.guard';
+import { ClientTokenGuard } from '../../../common/guards/client-token.guard';
 import { CanActivate } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AccountController } from './account.controller';
 import { AccountService } from '../../services/account/account.service';
 import { PaymentDto } from '../../dto/paymnet.dto';
 import { EmailPaymentDto } from '../../dto/email-payment.dto';
+import { LoanDto } from '../../dto/loan.dto';
 
 describe('AccountController', () => {
   let controller: AccountController;
@@ -100,7 +101,7 @@ describe('AccountController', () => {
         },
       ],
     })
-      .overrideGuard(TokenGuard)
+      .overrideGuard(ClientTokenGuard)
       .useValue(mockTokenGuard)
       .compile();
 
@@ -124,9 +125,10 @@ describe('AccountController', () => {
 
   it('should process de Loan requirement and return the movement', async () => {
     //Arrange
-    const dto = {
+    const dto: LoanDto = {
       idIncome: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
       amount: 10,
+      reason: '',
     };
     //Act
     const result = await controller.createLoan(dto);
