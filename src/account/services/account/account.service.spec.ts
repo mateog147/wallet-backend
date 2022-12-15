@@ -3,9 +3,10 @@ import { AccountService } from './account.service';
 import { AccountEntity } from '../../../common/storage/databases/postgres/entities/account.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { MovementsService } from '../movements/movements.service';
-import { AccountDto } from '../../dto/account.to';
+import { AccountDto } from '../../dto/account.dto';
 import { ClientEntity } from '../../../common/storage/databases/postgres/entities/client.entity';
 import { MovementEntity } from '../../../common/storage/databases/postgres/entities/movement.entity';
+import { LoanDto } from '../../dto/loan.dto';
 
 describe('AccountService', () => {
   let service: AccountService;
@@ -146,9 +147,10 @@ describe('AccountService', () => {
 
   it('should add to balance and substract from the credit of a account due to a Loan', async () => {
     //Arrange
-    const dto = {
+    const dto: LoanDto = {
       idIncome: '1ddc64c0-56c0-40e0-83ee-16da62a4042f',
       amount: 60,
+      reason: '',
     };
     //Act
     const result = await service.newLoan(dto);

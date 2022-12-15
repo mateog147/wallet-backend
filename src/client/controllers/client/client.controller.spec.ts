@@ -1,7 +1,7 @@
 import { CanActivate } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ClientService } from '../../services/client/client.service';
-import { TokenGuard } from '../../../common/guards/token.guard';
+import { ClientTokenGuard } from '../../../common/guards/client-token.guard';
 import { ClientController } from './client.controller';
 
 describe('ClientController', () => {
@@ -35,7 +35,7 @@ describe('ClientController', () => {
         },
       ],
     })
-      .overrideGuard(TokenGuard)
+      .overrideGuard(ClientTokenGuard)
       .useValue(mockTokenGuard)
       .compile();
 

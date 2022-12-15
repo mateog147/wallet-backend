@@ -167,6 +167,10 @@ response [201] :
 	}
 ```
 
+#### [guard]
+
+ClientTokenGuard / email [ClientDTO] token [bearrer token]
+
 #### [pipe]
 
 ValidationPipe / class-validator [CreateMovementDTO]
@@ -217,6 +221,10 @@ response [201] :
 	}
 ```
 
+#### [guard]
+
+ClientTokenGuard / email [ClientDTO] token [bearrer token]
+
 #### [pipe]
 
 ValidationPipe / class-validator [CreateMovementDTO]
@@ -260,6 +268,10 @@ response [200] :
 	}
 ```
 
+#### [guard]
+
+ClientTokenGuard / email [ClientDTO] token [bearrer token]
+
 ## Installation
 
 ```bash
@@ -295,4 +307,3 @@ $ npm run test:cov
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
