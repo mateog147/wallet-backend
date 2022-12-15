@@ -1,5 +1,5 @@
 import { MovementEntity } from './../../../common/storage/databases/postgres/entities/movement.entity';
-import { AccountDto } from './../../dto/account.to';
+import { AccountDto } from '../../dto/account.dto';
 import { AccountEntity } from './../../../common/storage/databases/postgres/entities/account.entity';
 import { ClientService } from './../../../client/services/client/client.service';
 import { ClientTokenGuard } from '../../../common/guards/client-token.guard';

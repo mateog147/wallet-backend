@@ -3,7 +3,7 @@ import { AccountService } from './account.service';
 import { AccountEntity } from '../../../common/storage/databases/postgres/entities/account.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { MovementsService } from '../movements/movements.service';
-import { AccountDto } from '../../dto/account.to';
+import { AccountDto } from '../../dto/account.dto';
 import { ClientEntity } from '../../../common/storage/databases/postgres/entities/client.entity';
 import { MovementEntity } from '../../../common/storage/databases/postgres/entities/movement.entity';
 import { LoanDto } from '../../dto/loan.dto';

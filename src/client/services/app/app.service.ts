@@ -18,7 +18,7 @@ export class AppService {
     return app.color;
   }
 
-  async updateColor(dto: UpdateColorDto) {
+  async updateColor(dto: UpdateColorDto): Promise<UpdateColorDto> {
     const res = await this.appRepository.update(
       { cliId: dto.cliId },
       { color: dto.color },

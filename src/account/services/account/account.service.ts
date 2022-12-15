@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AccountDto } from '../../dto/account.to';
+import { AccountDto } from '../../dto/account.dto';
 import { Repository } from 'typeorm';
 import { AccountEntity } from '../../../common/storage/databases/postgres/entities/account.entity';
 import { LoanDto } from '../../dto/loan.dto';
@@ -40,6 +40,9 @@ export class AccountService {
         where: { id: dto.idIncome },
       });
       const movement = await this.movementsService.addLoan(dto);
+      if (dto.amount > account.credit) {
+        throw new Error('The ammount is bigger than the credit');
+      }
       account.balance += dto.amount;
       account.credit -= dto.amount;
       this.repository.save(account);
