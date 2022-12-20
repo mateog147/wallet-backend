@@ -8,9 +8,15 @@ import { AppEntity } from './common/storage/databases/postgres/entities/app.enti
 import { ClientEntity } from './common/storage/databases/postgres/entities/client.entity';
 import { MovementEntity } from './common/storage/databases/postgres/entities/movement.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { join } from 'path';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: join(
+        process.cwd(),
+        'environments',
+        `.env.${process.env.SCOPE?.trimEnd()}`,
+      ),
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
